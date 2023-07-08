@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../controllers/category_controller.dart';
@@ -13,11 +13,18 @@ class CategoryView extends GetView<CategoryController> {
         title: const Text('CategoryView'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'CategoryView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: Column(
+        children: [
+          Container(
+            width: 1080.w,
+            height: 690.h,
+            color: Theme.of(context).primaryColor,
+          ),
+          Text(
+            'CategoryView is working',
+            style: TextStyle(fontSize: 60.sp),
+          )
+        ],
       ),
     );
   }

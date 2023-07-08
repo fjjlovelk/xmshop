@@ -39,31 +39,35 @@ class CustomAppBar extends StatelessWidget {
               icon: const Icon(Icons.messenger_outline),
             ),
           ],
-          title: AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            width: homeController.showAppBarBackground.value ? 780.w : 700.w,
-            height: 96.h,
-            padding: EdgeInsets.symmetric(horizontal: 40.w),
-            decoration: BoxDecoration(
-              color: homeController.showAppBarBackground.value
-                  ? Colors.grey[200]
-                  : Colors.grey[50],
-              borderRadius: BorderRadius.circular(60.r),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Icon(Icons.search, color: Colors.grey[400]),
-                    const Text('手机'),
-                  ],
-                ),
-                Icon(Icons.camera_alt_outlined, color: Colors.grey[400]),
-              ],
-            ),
-          ),
+          title: _buildTitle(),
         ),
+      ),
+    );
+  }
+
+  Widget _buildTitle() {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      width: homeController.showAppBarBackground.value ? 780.w : 700.w,
+      height: 96.h,
+      padding: EdgeInsets.symmetric(horizontal: 40.w),
+      decoration: BoxDecoration(
+        color: homeController.showAppBarBackground.value
+            ? Colors.grey[200]
+            : Colors.grey[50],
+        borderRadius: BorderRadius.circular(60.r),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Icon(Icons.search, color: Colors.grey[400]),
+              const Text('手机'),
+            ],
+          ),
+          Icon(Icons.camera_alt_outlined, color: Colors.grey[400]),
+        ],
       ),
     );
   }

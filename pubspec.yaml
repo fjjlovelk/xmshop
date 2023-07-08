@@ -9,6 +9,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: 4.6.5
   flutter_screenutil: ^5.8.4
+  card_swiper: ^2.0.4
+  dio: ^5.2.1+1
   flutter: 
     sdk: flutter
 

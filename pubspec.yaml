@@ -19,4 +19,8 @@ dev_dependencies:
 
 flutter: 
   uses-material-design: true
+  fonts:
+    - family: aliFonts
+      fonts:
+        - asset: assets/fonts/iconfont.ttf
 

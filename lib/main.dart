@@ -22,6 +22,10 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
             highlightColor: Colors.transparent,
             splashColor: Colors.transparent,
+            appBarTheme: const AppBarTheme(
+              centerTitle: true,
+              scrolledUnderElevation: 0,
+            ),
           ),
         );
       },

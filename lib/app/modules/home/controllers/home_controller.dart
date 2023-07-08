@@ -1,23 +1,29 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+  RxBool showAppBarBackground = false.obs;
+  ScrollController scrollController = ScrollController();
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
+    scrollController.addListener(() {
+      if (scrollController.position.pixels < 10 && showAppBarBackground.value) {
+        showAppBarBackground.value = false;
+        return;
+      }
+      if (scrollController.position.pixels >= 10 &&
+          scrollController.position.pixels < 20 &&
+          !showAppBarBackground.value) {
+        showAppBarBackground.value = true;
+        return;
+      }
+    });
   }
 
   @override
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

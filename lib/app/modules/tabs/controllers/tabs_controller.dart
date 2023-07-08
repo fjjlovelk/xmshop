@@ -5,16 +5,18 @@ import 'package:xmshop/app/modules/category/views/category_view.dart';
 import 'package:xmshop/app/modules/give/views/give_view.dart';
 import 'package:xmshop/app/modules/home/views/home_view.dart';
 import 'package:xmshop/app/modules/user/views/user_view.dart';
+import 'package:xmshop/app/utils/keep_alive_wrapper.dart';
 
 class TabsController extends GetxController {
   final RxInt currentIndex = 0.obs;
+  final PageController pageController = PageController(initialPage: 0);
 
   final List<Widget> pages = const [
-    HomeView(),
-    CategoryView(),
-    GiveView(),
-    CartView(),
-    UserView(),
+    KeepAliveWrapper(child: HomeView()),
+    KeepAliveWrapper(child: CategoryView()),
+    KeepAliveWrapper(child: GiveView()),
+    KeepAliveWrapper(child: CartView()),
+    KeepAliveWrapper(child: UserView()),
   ];
 
   final List<BottomNavigationBarItem> bottomNavigationBarItems = const [

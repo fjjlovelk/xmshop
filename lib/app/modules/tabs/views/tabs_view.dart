@@ -9,13 +9,19 @@ class TabsView extends GetView<TabsController> {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-        body: controller.currentPage,
+        body: PageView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: controller.pageController,
+          children: controller.pages,
+          onPageChanged: (index) => controller.setCurrentIndex(index),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: controller.currentIndex.value,
           type: BottomNavigationBarType.fixed,
           selectedFontSize: 12.0,
           enableFeedback: false,
           onTap: (index) {
+            controller.pageController.jumpToPage(index);
             controller.setCurrentIndex(index);
           },
           items: controller.bottomNavigationBarItems,

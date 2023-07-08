@@ -13,6 +13,9 @@ void main() {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent,
       ),
     ),
   );

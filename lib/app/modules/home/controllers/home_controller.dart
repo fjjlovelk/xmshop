@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:xmshop/app/api/home_api.dart';
+import 'package:xmshop/app/models/category_model.dart';
+import 'package:xmshop/app/models/home_swiper_model.dart';
 
 class HomeController extends GetxController {
   RxBool showAppBarBackground = false.obs;
   ScrollController scrollController = ScrollController();
 
-  List<Map<String, String>> swiperList = [
-    {
-      "url":
-          'https://img.zcool.cn/community/01873d5d91f4b2a8012060be4c8e14.jpg@1280w_1l_2o_100sh.jpg'
-    },
-    {"url": 'https://pic1.zhimg.com/v2-cb64e170a495f64feee940782c89b320_r.jpg'},
-    {
-      "url":
-          'https://ts1.cn.mm.bing.net/th/id/R-C.e38c583322d584f8efd633dda5a9b84d?rik=AlVaXp%2bQ7RNWdQ&riu=http%3a%2f%2fimg95.699pic.com%2fphoto%2f50072%2f9978.jpg_wh860.jpg&ehk=mfAeIZNTuyufMPCvcMx594kmw9BUCUdRXo%2fG51X3iBc%3d&risl=&pid=ImgRaw&r=0'
-    },
-  ];
+  RxList<HomeSwiperModel> swiperList = <HomeSwiperModel>[].obs;
+  RxList<CategoryModel> categoryList = <CategoryModel>[].obs;
 
   @override
   void onInit() {
     super.onInit();
+    scrollListener();
+    getSwiperData();
+    getCategoryData();
+  }
+
+  /// 监听listView滚动条
+  void scrollListener() {
     scrollController.addListener(() {
       if (scrollController.position.pixels < 10 && showAppBarBackground.value) {
         showAppBarBackground.value = false;
@@ -32,5 +33,17 @@ class HomeController extends GetxController {
         return;
       }
     });
+  }
+
+  /// 获取轮播图数据
+  void getSwiperData() async {
+    final response = await getSwiperApi();
+    swiperList.value = response;
+  }
+
+  /// 获取分类数据
+  void getCategoryData() async {
+    final response = await getCategoryApi();
+    categoryList.value = response;
   }
 }

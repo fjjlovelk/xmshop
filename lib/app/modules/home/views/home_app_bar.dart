@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:xmshop/app/config/theme_config.dart';
 import 'package:xmshop/app/modules/home/controllers/home_controller.dart';
 import 'package:xmshop/app/utils/ali_fonts.dart';
 
-class CustomAppBar extends StatelessWidget {
+class HomeAppBar extends StatelessWidget {
   final HomeController homeController = Get.find<HomeController>();
 
-  CustomAppBar({Key? key}) : super(key: key);
+  HomeAppBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +54,8 @@ class CustomAppBar extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 40.w),
       decoration: BoxDecoration(
         color: homeController.showAppBarBackground.value
-            ? Colors.grey[200]
-            : Colors.grey[50],
+            ? ThemeConfig.grey
+            : ThemeConfig.grey.withOpacity(0.9),
         borderRadius: BorderRadius.circular(60.r),
       ),
       child: Row(

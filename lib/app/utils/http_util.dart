@@ -1,10 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:xmshop/app/config/http_config.dart';
 
 class HttpUtil {
-  static const baseUrl = 'http://192.168.3.25:8000';
-  static const connectTimeout = Duration(seconds: 5);
-  static const receiveTimeout = Duration(seconds: 5);
-
   factory HttpUtil() => _instance;
 
   static final HttpUtil _instance = HttpUtil._internal();
@@ -13,9 +10,9 @@ class HttpUtil {
 
   HttpUtil._internal() {
     BaseOptions baseOptions = BaseOptions(
-      baseUrl: baseUrl,
-      connectTimeout: connectTimeout,
-      receiveTimeout: receiveTimeout,
+      baseUrl: HttpConfig.baseUrl,
+      connectTimeout: HttpConfig.connectTimeout,
+      receiveTimeout: HttpConfig.receiveTimeout,
     );
     dio = Dio(baseOptions);
     dio.interceptors.add(

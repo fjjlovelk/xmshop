@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:xmshop/app/modules/home/views/custom_app_bar.dart';
-import 'package:xmshop/app/modules/home/views/swiper_content.dart';
+import 'package:xmshop/app/modules/home/views/home_app_bar.dart';
+import 'package:xmshop/app/modules/home/views/home_banner_image.dart';
+import 'package:xmshop/app/modules/home/views/home_banner_text.dart';
+import 'package:xmshop/app/modules/home/views/home_category_swiper.dart';
+import 'package:xmshop/app/modules/home/views/home_hot_sale.dart';
+import 'package:xmshop/app/modules/home/views/home_swiper.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -21,11 +25,15 @@ class HomeView extends GetView<HomeController> {
             child: ListView(
               controller: controller.scrollController,
               children: [
-                SwiperContent(),
+                HomeSwiper(),
+                const HomeBannerText(),
+                HomeCategorySwiper(),
+                const HomeBannerImage(),
+                const HomeHotSale(),
               ],
             ),
           ),
-          CustomAppBar(),
+          HomeAppBar(),
         ],
       ),
     );

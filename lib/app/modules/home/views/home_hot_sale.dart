@@ -1,10 +1,13 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:xmshop/app/config/theme_config.dart';
+import 'package:xmshop/app/modules/home/controllers/home_controller.dart';
 
 class HomeHotSale extends StatelessWidget {
-  const HomeHotSale({Key? key}) : super(key: key);
+  final HomeController homeController = Get.find<HomeController>();
+  HomeHotSale({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +55,17 @@ class HomeHotSale extends StatelessWidget {
         color: const Color.fromRGBO(248, 248, 248, 1),
         borderRadius: BorderRadius.circular(15.r),
       ),
-      child: Swiper(
-        itemBuilder: (BuildContext context, int swiperIndex) {
-          return Image.network(
-              'https://xiaomi.itying.com/public/upload/HYWKHxrKgE9O6zKajRTmb50B.png');
-        },
-        itemCount: 3,
+      child: Obx(
+        () => Swiper(
+          itemBuilder: (BuildContext context, int swiperIndex) {
+            return Image.network(
+              homeController.saleSwiperList[swiperIndex].picUrl,
+              fit: BoxFit.fitHeight,
+            );
+          },
+          itemCount: homeController.saleSwiperList.length,
+          autoplay: true,
+        ),
       ),
     );
   }
@@ -68,28 +76,18 @@ class HomeHotSale extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         height: 735.h,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            _buildRightItem(
-              '空气炸烤箱',
-              '大容量专业炸烤',
-              '众筹价￥799',
-              'https://xiaomi.itying.com/public/upload/HYWKHxrKgE9O6zKajRTmb50B.png',
-            ),
-            _buildRightItem(
-              'Note 11 5G',
-              '至高优惠100元',
-              '到手价￥1199起',
-              'https://xiaomi.itying.com/public/upload/HYWKHxrKgE9O6zKajRTmb50B.png',
-            ),
-            _buildRightItem(
-              'Xiaomi 12s',
-              '领券下单立减100元',
-              '￥3899起',
-              'https://xiaomi.itying.com/public/upload/HYWKHxrKgE9O6zKajRTmb50B.png',
-            ),
-          ],
+        child: Obx(
+          () => Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: homeController.saleGoodsList
+                .map((item) => _buildRightItem(
+                      item.title,
+                      item.subTitle,
+                      '￥${item.price}',
+                      item.sPicUrl,
+                    ))
+                .toList(),
+          ),
         ),
       ),
     );
@@ -149,41 +147,4 @@ class HomeHotSale extends StatelessWidget {
       ),
     );
   }
-
-  // Widget _buildRightItem(
-  //     String title, String subTitle, String description, String url) {
-  //   return ListTile(
-  //     minVerticalPadding: 20.h,
-  //     contentPadding: EdgeInsets.fromLTRB(10.w, 0, 5.w, 0),
-  //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.r)),
-  //     tileColor: const Color.fromRGBO(248, 248, 248, 1),
-  //     title: Text(
-  //       title,
-  //       style: const TextStyle(fontWeight: FontWeight.bold),
-  //     ),
-  //     subtitle: Column(
-  //       mainAxisSize: MainAxisSize.min,
-  //       crossAxisAlignment: CrossAxisAlignment.start,
-  //       children: [
-  //         Text(
-  //           subTitle,
-  //           style: TextStyle(
-  //             color: const Color.fromRGBO(99, 99, 99, 1),
-  //             fontSize: 30.sp,
-  //           ),
-  //         ),
-  //         SizedBox(height: 10.h),
-  //         Text(
-  //           description,
-  //           style: TextStyle(
-  //             color: const Color.fromRGBO(99, 99, 99, 1),
-  //             fontWeight: FontWeight.bold,
-  //             fontSize: 30.sp,
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //     trailing: Image.network(url),
-  //   );
-  // }
 }

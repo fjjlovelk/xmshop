@@ -29,7 +29,7 @@ class HomeView extends GetView<HomeController> {
                 const HomeBannerText(),
                 HomeCategorySwiper(),
                 const HomeBannerImage(),
-                const HomeHotSale(),
+                HomeHotSale(),
               ],
             ),
           ),

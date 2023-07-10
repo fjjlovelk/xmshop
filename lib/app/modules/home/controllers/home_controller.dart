@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:xmshop/app/api/home_api.dart';
 import 'package:xmshop/app/models/category_model.dart';
+import 'package:xmshop/app/models/goods_model.dart';
 import 'package:xmshop/app/models/home_swiper_model.dart';
 
 class HomeController extends GetxController {
@@ -9,7 +10,9 @@ class HomeController extends GetxController {
   ScrollController scrollController = ScrollController();
 
   RxList<HomeSwiperModel> swiperList = <HomeSwiperModel>[].obs;
+  RxList<HomeSwiperModel> saleSwiperList = <HomeSwiperModel>[].obs;
   RxList<CategoryModel> categoryList = <CategoryModel>[].obs;
+  RxList<GoodsModel> saleGoodsList = <GoodsModel>[].obs;
 
   @override
   void onInit() {
@@ -17,6 +20,8 @@ class HomeController extends GetxController {
     scrollListener();
     getSwiperData();
     getCategoryData();
+    getSaleSwiperData();
+    getSaleGoodsData();
   }
 
   /// 监听listView滚动条
@@ -41,9 +46,21 @@ class HomeController extends GetxController {
     swiperList.value = response;
   }
 
+  /// 获取轮播图数据
+  void getSaleSwiperData() async {
+    final response = await getSwiperApi(params: {"position": 2});
+    saleSwiperList.value = response;
+  }
+
   /// 获取分类数据
   void getCategoryData() async {
     final response = await getCategoryApi();
     categoryList.value = response;
+  }
+
+  /// 获取热卖甄选商品数据
+  void getSaleGoodsData() async {
+    final response = await getGoodsListApi(params: {"is_hot": 1});
+    saleGoodsList.value = response;
   }
 }

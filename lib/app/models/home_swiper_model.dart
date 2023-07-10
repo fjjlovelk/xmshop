@@ -48,7 +48,7 @@ class HomeSwiperModel {
         "title": title,
         "status": status,
         "pic": pic,
-        "picUrl": picUrl,
+        "pic_url": picUrl,
         "url": url,
         "position": position,
       };

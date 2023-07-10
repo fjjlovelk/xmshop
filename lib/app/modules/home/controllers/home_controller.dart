@@ -13,6 +13,7 @@ class HomeController extends GetxController {
   RxList<HomeSwiperModel> saleSwiperList = <HomeSwiperModel>[].obs;
   RxList<CategoryModel> categoryList = <CategoryModel>[].obs;
   RxList<GoodsModel> saleGoodsList = <GoodsModel>[].obs;
+  RxList<GoodsModel> gridGoodsList = <GoodsModel>[].obs;
 
   @override
   void onInit() {
@@ -22,6 +23,7 @@ class HomeController extends GetxController {
     getCategoryData();
     getSaleSwiperData();
     getSaleGoodsData();
+    getGridGoodsData();
   }
 
   /// 监听listView滚动条
@@ -60,7 +62,14 @@ class HomeController extends GetxController {
 
   /// 获取热卖甄选商品数据
   void getSaleGoodsData() async {
-    final response = await getGoodsListApi(params: {"is_hot": 1});
+    final response =
+        await getGoodsListApi(params: {"is_hot": 1, "pageSize": 3});
     saleGoodsList.value = response;
+  }
+
+  /// 获取瀑布流商品数据
+  void getGridGoodsData() async {
+    final response = await getGoodsListApi(params: {"is_best": 1});
+    gridGoodsList.value = response;
   }
 }

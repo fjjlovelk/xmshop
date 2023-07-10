@@ -2,7 +2,6 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:xmshop/app/config/theme_config.dart';
 import 'package:xmshop/app/modules/home/controllers/home_controller.dart';
 
 class HomeHotSale extends StatelessWidget {
@@ -13,34 +12,11 @@ class HomeHotSale extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 30.w),
-      child: Column(
+      child: Row(
         children: [
-          _buildTitle(),
-          Row(
-            children: [
-              _buildLeft(),
-              SizedBox(width: 20.w),
-              _buildRight(),
-            ],
-          )
-        ],
-      ),
-    );
-  }
-
-  // 标题
-  Widget _buildTitle() {
-    return const ListTile(
-      contentPadding: EdgeInsets.zero,
-      title: Text('热销甄选'),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text('更多手机推荐'),
-          Icon(
-            Icons.chevron_right,
-            color: ThemeConfig.grey2,
-          )
+          _buildLeft(),
+          SizedBox(width: 20.w),
+          _buildRight(),
         ],
       ),
     );

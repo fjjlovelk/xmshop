@@ -2,6 +2,7 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:transparent_image/transparent_image.dart';
 import 'package:xmshop/app/modules/home/controllers/home_controller.dart';
 
 class HomeCategorySwiper extends StatelessWidget {
@@ -40,11 +41,12 @@ class HomeCategorySwiper extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Image.network(
-          url,
+        FadeInImage.memoryNetwork(
           width: 145.w,
           height: 145.w,
           fit: BoxFit.fitHeight,
+          placeholder: kTransparentImage,
+          image: url,
         ),
         Text(
           text,

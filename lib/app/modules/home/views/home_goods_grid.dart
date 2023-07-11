@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
+import 'package:transparent_image/transparent_image.dart';
 import 'package:xmshop/app/modules/home/controllers/home_controller.dart';
 
 class HomeGoodsGrid extends StatelessWidget {
@@ -45,7 +46,11 @@ class HomeGoodsGrid extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(url, fit: BoxFit.fitWidth),
+            FadeInImage.memoryNetwork(
+              fit: BoxFit.fitWidth,
+              placeholder: kTransparentImage,
+              image: url,
+            ),
             Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
             SizedBox(height: 5.h),
             Text(subTitle, style: TextStyle(fontSize: 30.sp)),

@@ -26,6 +26,12 @@ class HomeController extends GetxController {
     getGridGoodsData();
   }
 
+  @override
+  void onClose() {
+    super.onClose();
+    scrollController.dispose();
+  }
+
   /// 监听listView滚动条
   void scrollListener() {
     scrollController.addListener(() {

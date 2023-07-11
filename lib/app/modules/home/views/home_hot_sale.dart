@@ -2,6 +2,7 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:transparent_image/transparent_image.dart';
 import 'package:xmshop/app/modules/home/controllers/home_controller.dart';
 
 class HomeHotSale extends StatelessWidget {
@@ -34,9 +35,10 @@ class HomeHotSale extends StatelessWidget {
       child: Obx(
         () => Swiper(
           itemBuilder: (BuildContext context, int swiperIndex) {
-            return Image.network(
-              homeController.saleSwiperList[swiperIndex].picUrl,
+            return FadeInImage.memoryNetwork(
               fit: BoxFit.fitHeight,
+              placeholder: kTransparentImage,
+              image: homeController.saleSwiperList[swiperIndex].picUrl,
             );
           },
           itemCount: homeController.saleSwiperList.length,
@@ -113,11 +115,12 @@ class HomeHotSale extends StatelessWidget {
             ),
           ),
           SizedBox(width: 10.w),
-          Image.network(
-            url,
+          FadeInImage.memoryNetwork(
             width: 155.w,
             height: 200.h,
             fit: BoxFit.fitHeight,
+            placeholder: kTransparentImage,
+            image: url,
           ),
         ],
       ),

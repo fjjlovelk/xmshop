@@ -14,7 +14,7 @@ class CategoryModel {
   String picUrl;
   String pid;
   int sort;
-  int isBest;
+  int? isBest;
   int goProduct;
   String productId;
 
@@ -26,7 +26,7 @@ class CategoryModel {
     required this.picUrl,
     required this.pid,
     required this.sort,
-    required this.isBest,
+    this.isBest,
     required this.goProduct,
     required this.productId,
   });
@@ -45,9 +45,9 @@ class CategoryModel {
       pic: json["pic"],
       picUrl: '${HttpConfig.url}/${newUrl.replaceAll('\\', '/')}',
       pid: json["pid"],
-      sort: json["sort"],
-      isBest: json["is_best"],
-      goProduct: json["go_product"],
+      sort: (json["sort"] == null || json["sort"] is! int) ? 0 : json["sort"],
+      isBest: json["is_best"] ?? 0,
+      goProduct: json["go_product"] ?? 0,
       productId: json["product_id"],
     );
   }

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:xmshop/app/modules/category/controllers/category_controller.dart';
+import 'package:xmshop/app/routes/app_pages.dart';
 
 class CategoryBodyRight extends StatelessWidget {
   final CategoryController categoryController = Get.find<CategoryController>();
@@ -19,21 +20,29 @@ class CategoryBodyRight extends StatelessWidget {
             mainAxisSpacing: 80.h,
           ),
           itemBuilder: (ctx, index) {
-            return SizedBox(
-              width: double.infinity,
-              height: 260.h,
-              child: Column(
-                children: [
-                  Expanded(
-                    child: FadeInImage.memoryNetwork(
-                      fit: BoxFit.fitHeight,
-                      placeholder: kTransparentImage,
-                      image: categoryController.rightData[index].picUrl,
+            return InkWell(
+              onTap: () {
+                Get.toNamed(
+                  Routes.GOODS_LIST,
+                  arguments: {"cid": categoryController.rightData[index].id},
+                );
+              },
+              child: SizedBox(
+                width: double.infinity,
+                height: 260.h,
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: FadeInImage.memoryNetwork(
+                        fit: BoxFit.fitHeight,
+                        placeholder: kTransparentImage,
+                        image: categoryController.rightData[index].picUrl,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 40.h),
-                  Text(categoryController.rightData[index].title),
-                ],
+                    SizedBox(height: 40.h),
+                    Text(categoryController.rightData[index].title),
+                  ],
+                ),
               ),
             );
           },
